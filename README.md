@@ -9,7 +9,33 @@ A simple and elegant To-Do List app built using Flutter's `StatefulWidget`, offe
 - Filter tasks by All, Active, or Completed (using dropdown button) 
 - Colorful card layout with a polished UI
 
--DropdownButton widget allows users to select a single value from a list, while IconButton provides an interactive icon that can trigger actions like theme toggling or adding tasks.
+-DropdownButton widget allows users to select a single value from a list, 
+
+DropdownButton<String>(
+  value: _selectedFilter,
+  items: _filters.map((f) {
+    return DropdownMenuItem(value: f, child: Text(f));
+  }).toList(),
+  onChanged: (v) {
+    if (v != null) setState(() => _selectedFilter = v);
+  },
+),
+
+- value; Defines the currently selected value from the dropdown.	
+- items; List of dropdown options constructed from _filters.
+- onChanged; Callback when user selects an item; updates _selectedFilter.
+
+-while IconButton provides an interactive icon that can trigger actions like theme toggling or adding tasks.
+
+IconButton(
+  icon: Icon(Icons.brightness_6),
+  tooltip: 'Toggle Theme',
+  onPressed: widget.onToggleTheme,
+),
+
+- icon	Sets the icon shown in the button.
+- tooltip	Provides a hover/long-press label for accessibility.
+- onPressed	Defines the callback when the button is tapped.
 
 # attributes
 
